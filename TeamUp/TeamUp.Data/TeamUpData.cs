@@ -33,11 +33,11 @@ namespace TeamUp.Data
             }
         }
 
-        public IGenericRepository<Category> Category
+        public IGenericRepository<ProgrammingCategory> Category
         {
             get
             {
-                return this.GetRepository<Category>();
+                return this.GetRepository<ProgrammingCategory>();
             }
         }
 

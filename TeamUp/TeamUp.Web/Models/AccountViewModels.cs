@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TeamUp.Models;
 
 namespace TeamUp.Web.Models
 {
@@ -79,6 +80,10 @@ namespace TeamUp.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Occupation")]
+        [Required]
+        public Occupation Occupation { get; set; }
     }
 
     public class ResetPasswordViewModel

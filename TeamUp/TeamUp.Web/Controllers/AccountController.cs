@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TeamUp.Web.Models;
 using TeamUp.Models;
+using System.Collections.Generic;
 
 namespace TeamUp.Web.Controllers
 {
@@ -155,7 +156,9 @@ namespace TeamUp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new TeamUpUser { UserName = model.Email, Email = model.Email };
+                var user = new TeamUpUser { UserName = model.Email, Email = model.Email, 
+                    Occupation = model.Occupation };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

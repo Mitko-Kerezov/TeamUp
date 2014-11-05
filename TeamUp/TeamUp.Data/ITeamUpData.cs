@@ -7,7 +7,7 @@
     {
         IGenericRepository<ChatMessage> ChatMessages { get; }
 
-        IGenericRepository<Category> Category { get; }
+        IGenericRepository<ProgrammingCategory> Category { get; }
 
         IGenericRepository<Skill> Skills { get; }
 

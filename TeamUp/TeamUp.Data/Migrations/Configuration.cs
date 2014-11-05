@@ -9,8 +9,8 @@ namespace TeamUp.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
             ContextKey = "TeamUp.Data.TeamUpDbContext";
         }
 

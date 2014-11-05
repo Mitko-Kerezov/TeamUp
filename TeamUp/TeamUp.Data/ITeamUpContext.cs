@@ -8,7 +8,7 @@
     {
         IDbSet<ChatMessage> ChatMessages { get; set; }
 
-        IDbSet<Category> Categories { get; set; }
+        IDbSet<ProgrammingCategory> Categories { get; set; }
 
         IDbSet<Skill> Skills { get; set; }
 

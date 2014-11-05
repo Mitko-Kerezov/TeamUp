@@ -1,6 +1,6 @@
 ﻿namespace TeamUp.Models
 {
-    public class Category
+    public class ProgrammingCategory
     {
         public int Id { get; set; }
 

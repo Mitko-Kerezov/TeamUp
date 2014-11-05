@@ -5,6 +5,7 @@
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Collections.Generic;
 
     public class TeamUpUser : IdentityUser
     {
@@ -14,7 +15,11 @@
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+
         }
+
+        // Additional fields
+        public Occupation Occupation { get; set; }
     }
 
 }

@@ -53,7 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatMessage.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="Occupation.cs" />
+    <Compile Include="ProgrammingCategory.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="TeamUpUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

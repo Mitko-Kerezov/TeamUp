@@ -7,9 +7,11 @@
     {
         IGenericRepository<ChatMessage> ChatMessages { get; }
 
-        IGenericRepository<ProgrammingCategory> Category { get; }
-
         IGenericRepository<Skill> Skills { get; }
+
+        IGenericRepository<ProgrammingCategory> ProgrammingCategories { get; }
+
+        IGenericRepository<TeamUpUser> Users { get; }
 
         void SaveChanges();
     }

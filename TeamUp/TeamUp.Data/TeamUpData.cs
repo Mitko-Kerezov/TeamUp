@@ -17,14 +17,6 @@ namespace TeamUp.Data
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IGenericRepository<TeamUpUser> Users
-        {
-            get
-            {
-                return this.GetRepository<TeamUpUser>();
-            }
-        }
-
         public IGenericRepository<ChatMessage> ChatMessages
         {
             get
@@ -33,11 +25,11 @@ namespace TeamUp.Data
             }
         }
 
-        public IGenericRepository<ProgrammingCategory> Category
+        public IGenericRepository<TeamUpUser> Users
         {
             get
             {
-                return this.GetRepository<ProgrammingCategory>();
+                return this.GetRepository<TeamUpUser>();
             }
         }
 
@@ -49,6 +41,15 @@ namespace TeamUp.Data
             }
         }
 
+        public IGenericRepository<ProgrammingCategory> ProgrammingCategories
+        {
+            get
+            {
+                return this.GetRepository<ProgrammingCategory>();
+            }
+        }
+
+       
         public void SaveChanges()
         {
             this.context.SaveChanges();

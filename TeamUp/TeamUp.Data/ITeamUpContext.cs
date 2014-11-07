@@ -8,9 +8,9 @@
     {
         IDbSet<ChatMessage> ChatMessages { get; set; }
 
-        IDbSet<ProgrammingCategory> Categories { get; set; }
-
         IDbSet<Skill> Skills { get; set; }
+
+        IDbSet<ProgrammingCategory> ProgrammingCategories { get; set; }
 
         IDbSet<T> Set<T>() where T : class;
 

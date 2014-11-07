@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.category-checkbox {
+    margin-left: 20px !important;
+}
+
+.category-container {
+    padding-left: 5%;
+}

@@ -63,7 +63,7 @@ namespace TeamUp.Web.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class BaseRegisterViewModel
     {
         [Required]
         [EmailAddress]
@@ -85,7 +85,33 @@ namespace TeamUp.Web.Models
         [Required]
         public Occupation Occupation { get; set; }
     }
+    public class RegisterViewModelGet : BaseRegisterViewModel
+    {
+        public AdditionalCategoryModel AdditionalCategories { get; set; }
+    }
 
+    public class RegisterViewModelPost : BaseRegisterViewModel
+    {
+        public string[] AdditionalCategories { get; set; }
+    }
+
+    public class AdditionalCategoryModel
+    {
+        public AdditionalCategoryModel(IList<CaregoryItem> items)
+        {
+            this.Categories = items;
+        }
+
+        public IList<CaregoryItem> Categories { get; set; }
+    }
+
+    public class CaregoryItem
+    {
+        public bool Selected { get; set; }
+        public string Value { get; set; }
+        public string Text { get; set; }
+    }
+    
     public class ResetPasswordViewModel
     {
         [Required]

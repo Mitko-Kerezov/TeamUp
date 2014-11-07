@@ -17,5 +17,7 @@ namespace TeamUp.Models
 
         public DateTime DateTime { get; set; }
 
+        public bool IsRead { get; set; }
+
     }
 }

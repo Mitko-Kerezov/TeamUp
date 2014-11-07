@@ -11,15 +11,17 @@ using Microsoft.Owin.Security;
 using TeamUp.Web.Models;
 using TeamUp.Models;
 using System.Collections.Generic;
+using TeamUp.Data;
 
 namespace TeamUp.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationUserManager _userManager;
 
         public AccountController()
+            : base()
         {
         }
 
@@ -144,7 +146,17 @@ namespace TeamUp.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModelGet model = new RegisterViewModelGet();
+            var categories = this.Data.ProgrammingCategories
+                                .All()
+                                .Select(c => new CaregoryItem()
+                                {
+                                    Text = c.Name,
+                                    Value = c.Name
+                                })
+                                .ToList();
+            model.AdditionalCategories = new AdditionalCategoryModel(categories);
+            return View(model);
         }
 
         //
@@ -152,16 +164,29 @@ namespace TeamUp.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModelPost model)
         {
             if (ModelState.IsValid)
             {
                 var user = new TeamUpUser { UserName = model.Email, Email = model.Email, 
-                    Occupation = model.Occupation };
-                
+                    Occupation = model.Occupation, ProgrammingCategories = new HashSet<ProgrammingCategory>()};
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (model.AdditionalCategories != null)
+                    {
+                        // If the user chose to add categories on registration
+                        var userInDb = this.Data.Users.All().FirstOrDefault(u => u.UserName == user.UserName);
+                        foreach (var cateogry in model.AdditionalCategories)
+                        {
+                            var categoryInDb = this.Data.ProgrammingCategories.All().First(c => c.Name == cateogry);
+
+                            userInDb.ProgrammingCategories.Add(categoryInDb);
+                            categoryInDb.Users.Add(userInDb);
+                            this.Data.SaveChanges();
+                        }
+                    }
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

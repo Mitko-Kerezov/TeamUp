@@ -19,7 +19,26 @@
         }
 
         // Additional fields
+        private ICollection<ProgrammingCategory> programmingCategories;
+
+        public TeamUpUser()
+        {
+            this.programmingCategories = new HashSet<ProgrammingCategory>();
+        }
+
+        public virtual ICollection<ProgrammingCategory> ProgrammingCategories
+        {
+            get
+            {
+                return this.programmingCategories;
+            }
+            set
+            {
+                this.programmingCategories = value;
+            }
+        }
         public Occupation Occupation { get; set; }
+
     }
 
 }

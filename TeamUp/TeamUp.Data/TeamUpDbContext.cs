@@ -20,9 +20,9 @@ namespace TeamUp.Data
 
         public IDbSet<ChatMessage> ChatMessages { get; set; }
 
-        public IDbSet<ProgrammingCategory> Categories { get; set; }
-
         public IDbSet<Skill> Skills { get; set; }
+
+        public IDbSet<ProgrammingCategory> ProgrammingCategories { get; set; }
 
         public IDbSet<T> Set<T>() where T : class
         {

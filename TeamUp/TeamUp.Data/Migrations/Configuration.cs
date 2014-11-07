@@ -4,6 +4,7 @@ namespace TeamUp.Data.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using TeamUp.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TeamUp.Data.TeamUpDbContext>
     {
@@ -16,18 +17,22 @@ namespace TeamUp.Data.Migrations
 
         protected override void Seed(TeamUp.Data.TeamUpDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.ProgrammingCategories.Any())
+            {
+                var categories = new ProgrammingCategory[] { 
+                new ProgrammingCategory(){Name = "Embedded"},
+                new ProgrammingCategory(){Name = "Desktop"},
+                new ProgrammingCategory(){Name = "Mobile"},
+                new ProgrammingCategory(){Name = "Web"}
+                };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                foreach (var category in categories)
+                {
+                    context.ProgrammingCategories.Add(category);
+                }
+
+                context.SaveChanges();
+            }
         }
     }
 }

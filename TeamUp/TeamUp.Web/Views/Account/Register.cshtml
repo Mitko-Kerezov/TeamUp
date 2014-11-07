@@ -39,7 +39,14 @@
     </fieldset>
     <fieldset>
         <legend>Additional information (you can change that later)</legend>
-        @Html.Partial("~/Views/Shared/_ProgrammingCategoryCheckboxes.cshtml", Model.AdditionalCategories.Categories)
+        <fieldset>
+            <legend>Fields of interest</legend>
+            @Html.Partial("~/Views/Shared/_ProgrammingCategoryCheckboxesPartial.cshtml", Model.AdditionalCategories.Categories)
+        </fieldset>
+        <fieldset>
+            <legend>Skills</legend>
+            @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
+        </fieldset>
     </fieldset>
         <div class="form-group">
             <div class="col-md-offset-4 col-md-10">

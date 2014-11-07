@@ -149,13 +149,22 @@ namespace TeamUp.Web.Controllers
             RegisterViewModelGet model = new RegisterViewModelGet();
             var categories = this.Data.ProgrammingCategories
                                 .All()
-                                .Select(c => new CaregoryItem()
+                                .Select(c => new CheckBoxItem()
                                 {
                                     Text = c.Name,
                                     Value = c.Name
                                 })
                                 .ToList();
-            model.AdditionalCategories = new AdditionalCategoryModel(categories);
+            var skills = this.Data.Skills
+                                .All()
+                                .Select(s => new CheckBoxItem()
+                                {
+                                    Text = s.Name,
+                                    Value = s.Name
+                                })
+                                .ToList();
+
+            model.AdditionalCategories = new AdditionalCategoryAndSkillModel(categories, skills);
             return View(model);
         }
 
@@ -174,19 +183,32 @@ namespace TeamUp.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.AdditionalCategories != null)
+                    var userInDb = this.Data.Users.All().FirstOrDefault(u => u.UserName == user.UserName);
+                    if (model.ProgrammingCategories != null)
                     {
                         // If the user chose to add categories on registration
-                        var userInDb = this.Data.Users.All().FirstOrDefault(u => u.UserName == user.UserName);
-                        foreach (var cateogry in model.AdditionalCategories)
+                        foreach (var cateogry in model.ProgrammingCategories)
                         {
                             var categoryInDb = this.Data.ProgrammingCategories.All().First(c => c.Name == cateogry);
 
                             userInDb.ProgrammingCategories.Add(categoryInDb);
                             categoryInDb.Users.Add(userInDb);
-                            this.Data.SaveChanges();
+                            
                         }
                     }
+                    if (model.Skills != null)
+                    {
+                        // If the user chose to add categories on registration
+                        foreach (var skill in model.Skills)
+                        {
+                            var skillInDb = this.Data.Skills.All().First(c => c.Name == skill);
+
+                            userInDb.Skills.Add(skillInDb);
+                            skillInDb.Users.Add(userInDb);
+
+                        }
+                    }
+                    this.Data.SaveChanges();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

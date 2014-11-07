@@ -1,0 +1,5 @@
+﻿@model IList<TeamUp.Web.Models.CheckBoxItem>
+<div class="form-group">
+    @Html.EditorForModel(new { CheckBoxesName = "Skills",
+                               Model = Model})
+</div>

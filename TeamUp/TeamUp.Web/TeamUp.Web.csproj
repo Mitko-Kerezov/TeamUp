@@ -242,8 +242,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_ProgrammingCategoryCheckboxes.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CaregoryItem.cshtml" />
+    <Content Include="Views\Shared\_ProgrammingCategoryCheckboxesPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxItem.cshtml" />
+    <Content Include="Views\Shared\_SkillCheckboxesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

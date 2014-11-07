@@ -87,25 +87,30 @@ namespace TeamUp.Web.Models
     }
     public class RegisterViewModelGet : BaseRegisterViewModel
     {
-        public AdditionalCategoryModel AdditionalCategories { get; set; }
+        public AdditionalCategoryAndSkillModel AdditionalCategories { get; set; }
     }
 
     public class RegisterViewModelPost : BaseRegisterViewModel
     {
-        public string[] AdditionalCategories { get; set; }
+        public string[] ProgrammingCategories { get; set; }
+
+        public string[] Skills { get; set; }
     }
 
-    public class AdditionalCategoryModel
+    public class AdditionalCategoryAndSkillModel
     {
-        public AdditionalCategoryModel(IList<CaregoryItem> items)
+        public AdditionalCategoryAndSkillModel(IList<CheckBoxItem> categories, IList<CheckBoxItem> skills)
         {
-            this.Categories = items;
+            this.Categories = categories;
+            this.Skills = skills;
         }
 
-        public IList<CaregoryItem> Categories { get; set; }
+        public IList<CheckBoxItem> Categories { get; set; }
+
+        public IList<CheckBoxItem> Skills { get; set; }
     }
 
-    public class CaregoryItem
+    public class CheckBoxItem
     {
         public bool Selected { get; set; }
         public string Value { get; set; }

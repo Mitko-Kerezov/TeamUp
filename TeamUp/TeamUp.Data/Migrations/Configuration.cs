@@ -30,9 +30,32 @@ namespace TeamUp.Data.Migrations
                 {
                     context.ProgrammingCategories.Add(category);
                 }
-
-                context.SaveChanges();
             }
+
+            if (!context.Skills.Any())
+            {
+                var skills = new Skill[] { 
+                new Skill(){Name = "C"},
+                new Skill(){Name = "C#"},
+                new Skill(){Name = "JavaScript"},
+                new Skill(){Name = "Objective C"},
+                new Skill(){Name = "Java"},
+                new Skill(){Name = "Forth"},
+                new Skill(){Name = "PHP"},
+                new Skill(){Name = "Python"},
+                new Skill(){Name = "Photoshop"},
+                new Skill(){Name = "HTML"},
+                new Skill(){Name = "CSS"},
+                new Skill(){Name = "C++"}
+                };
+
+                foreach (var skill in skills)
+                {
+                    context.Skills.Add(skill);
+                }
+            }
+
+            context.SaveChanges();
         }
     }
 }

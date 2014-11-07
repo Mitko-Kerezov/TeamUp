@@ -1,0 +1,8 @@
+﻿@model TeamUp.Web.Models.CheckBoxItem
+@{
+    var checkBoxesName = ViewBag.CheckBoxesName;
+}
+<div class="col-md-3 text-center">
+    <label class="control-label" for=@Model.Value>@Model.Text</label>
+    <input class="form-control" type="checkbox" value=@Model.Value name=@checkBoxesName id=@Model.Value />
+</div>

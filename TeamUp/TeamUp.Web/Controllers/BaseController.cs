@@ -8,9 +8,9 @@
     {
         private ITeamUpData data;
 
-        public BaseController()
+        public BaseController(ITeamUpData data)
         {
-            this.data = new TeamUpData(new TeamUpDbContext());
+            this.data = data;
         }
 
         protected ITeamUpData Data

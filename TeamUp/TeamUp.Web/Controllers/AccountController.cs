@@ -20,12 +20,13 @@ namespace TeamUp.Web.Controllers
     {
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-            : base()
+        public AccountController(ITeamUpData data)
+            : base(data)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ITeamUpData data, ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+            : this(data)
         {
             UserManager = userManager;
             SignInManager = signInManager;

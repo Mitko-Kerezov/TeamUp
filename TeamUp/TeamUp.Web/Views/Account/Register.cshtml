@@ -38,12 +38,12 @@
         </div>
     </fieldset>
     <fieldset>
-        <legend>Additional information (you can change that later)</legend>
-        <fieldset>
+        <legend id="additional-info-legend">Additional information (you can change that later)</legend>
+        <fieldset class="hidden">
             <legend>Fields of interest</legend>
             @Html.Partial("~/Views/Shared/_ProgrammingCategoryCheckboxesPartial.cshtml", Model.AdditionalCategories.Categories)
         </fieldset>
-        <fieldset>
+        <fieldset class="hidden">
             <legend>Skills</legend>
             @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
         </fieldset>
@@ -56,5 +56,5 @@
         }
 
         @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/register")
         }

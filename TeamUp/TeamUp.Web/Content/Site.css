@@ -30,3 +30,8 @@ textarea {
 .category-container {
     padding-left: 5%;
 }
+
+#additional-info-legend, label {
+    cursor: pointer;
+}
+

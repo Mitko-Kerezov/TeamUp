@@ -1,0 +1,19 @@
+﻿@model TeamUp.Web.Models.ChangeSkillsModel
+@{
+    ViewBag.Title = "Change Skills";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("ChangeSkills", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Change Account Skills</h4>
+    <hr />
+    @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.Skills)
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" value="Change" class="btn btn-default" />
+        </div>
+    </div>
+}

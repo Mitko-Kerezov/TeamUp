@@ -20,9 +20,7 @@ namespace TeamUp.Web
 
         private static void RegisterStyles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            
         }
 
         private static void RegisterScripts(BundleCollection bundles)

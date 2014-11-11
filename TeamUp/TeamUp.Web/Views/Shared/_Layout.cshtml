@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title</title>
+    @Styles.Render(string.Format("~/Content/BootstrapThemes/{0}.css", ViewBag.ThemeChosen.ToString()))
+    @Styles.Render("~/Content/site.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -24,12 +25,17 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("New Project", "Index", "Projects")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        <p class="text-success">@ViewBag.StatusMessage</p>
         @RenderBody()
         <hr />
         <footer>

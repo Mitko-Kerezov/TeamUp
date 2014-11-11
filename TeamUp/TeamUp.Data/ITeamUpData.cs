@@ -11,6 +11,8 @@
 
         IGenericRepository<ProgrammingCategory> ProgrammingCategories { get; }
 
+        IGenericRepository<Project> Projects { get; }
+
         IGenericRepository<TeamUpUser> Users { get; }
 
         void SaveChanges();

@@ -1,0 +1,19 @@
+﻿@model TeamUp.Models.TeamUpUser
+@{
+    ViewBag.Title = "Change Theme";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("ChangeTheme", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Change TeamUp's theme</h4>
+    <hr />
+    @Html.EnumDropDownListFor(m => m.ThemeChosen, new { @class = "form-control"})
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" value="Change" class="btn btn-default" />
+        </div>
+    </div>
+}

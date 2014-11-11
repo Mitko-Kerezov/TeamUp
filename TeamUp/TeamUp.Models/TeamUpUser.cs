@@ -21,11 +21,13 @@
         // Additional fields
         private ICollection<ProgrammingCategory> programmingCategories;
         private ICollection<Skill> skills;
+        private ICollection<Project> projects;
 
         public TeamUpUser()
         {
             this.programmingCategories = new HashSet<ProgrammingCategory>();
             this.skills = new HashSet<Skill>();
+            this.projects = new HashSet<Project>();
         }
 
         public virtual ICollection<ProgrammingCategory> ProgrammingCategories
@@ -52,7 +54,21 @@
             }
         }
 
+        public virtual ICollection<Project> Projects
+        {
+            get
+            {
+                return this.projects;
+            }
+            set
+            {
+                this.projects = value;
+            }
+        }
+
         public Occupation Occupation { get; set; }
+
+        public ThemeChoice ThemeChosen { get; set; }
 
     }
 

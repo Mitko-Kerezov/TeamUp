@@ -12,8 +12,7 @@ using TeamUp.Data;
 
 namespace TeamUp.Web.Controllers
 {
-    [Authorize]
-    public class ManageController : BaseController
+    public class ManageController : BaseAuthorizeController
     {
         public ManageController(ITeamUpData data)
             : base(data)
@@ -47,6 +46,7 @@ namespace TeamUp.Web.Controllers
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.ManageCategoriesSuccess ? "Your categories have been modified."
                 : message == ManageMessageId.ManageSkillsSuccess ? "Your skills have been modified."
+                : message == ManageMessageId.ChangeThemeSuccess ? "Your theme has been changed."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
 
@@ -174,7 +174,25 @@ namespace TeamUp.Web.Controllers
             this.Data.SaveChanges();
             return RedirectToAction("Index", new { Message = ManageMessageId.ManageSkillsSuccess });
         }
-        
+
+        //
+        // GET: /Manage/ChangeTheme
+        public ActionResult ChangeTheme()
+        {
+            return View(this.CurrentUser);
+        }
+
+        //
+        // POST: /Manage/ChangeTheme
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeTheme(int ThemeChosen)
+        {
+            this.CurrentUser.ThemeChosen = (ThemeChoice)ThemeChosen;
+            this.Data.SaveChanges();
+            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeThemeSuccess });
+        }
+
 #region Helpers
         
         private IAuthenticationManager AuthenticationManager
@@ -205,6 +223,7 @@ namespace TeamUp.Web.Controllers
             ChangePasswordSuccess,
             ManageCategoriesSuccess,
             ManageSkillsSuccess,
+            ChangeThemeSuccess,
             Error
         }
 

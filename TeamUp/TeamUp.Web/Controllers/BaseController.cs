@@ -29,6 +29,7 @@
             }
             // Calling BeginExecute before PrepareSystemMessages for the TempData to has values
             var result = base.BeginExecute(requestContext, callback, state);
+            this.ViewBag.ThemeChosen = this.CurrentUser == null ? ThemeChoice.Default : this.CurrentUser.ThemeChosen;
             return result;
         }
 

@@ -49,6 +49,13 @@ namespace TeamUp.Data
             }
         }
 
+        public IGenericRepository<Project> Projects
+        {
+            get
+            {
+                return this.GetRepository<Project>();
+            }
+        }
        
         public void SaveChanges()
         {

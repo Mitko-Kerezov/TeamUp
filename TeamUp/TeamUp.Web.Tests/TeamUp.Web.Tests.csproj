@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TeamUp.Data\TeamUp.Data.csproj">
+      <Project>{1aeff5c1-16c4-4a22-9a82-e5455b616562}</Project>
+      <Name>TeamUp.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamUp.Web\TeamUp.Web.csproj">
       <Project>{CAB0A36A-C7A8-4843-A919-FEFBFFDD2990}</Project>
       <Name>TeamUp.Web</Name>

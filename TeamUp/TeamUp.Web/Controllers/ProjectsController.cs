@@ -45,8 +45,6 @@
         {
             if (ModelState.IsValid)
             {
-                // TODO: Better mapping
-                Mapper.CreateMap<CreateProjectViewModel, Project>();
                 var project = new Project();
                 project = Mapper.Map(model, project);
 

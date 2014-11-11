@@ -29,6 +29,7 @@
             foreach (var map in maps)
             {
                 Mapper.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Destination, map.Source);
             }
         }
         private static void LoadCustomMappings(IEnumerable<Type> types)

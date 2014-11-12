@@ -60,6 +60,29 @@
             return View(model);
         }
 
+        // GET: Projects/Details/{id}
+        public ActionResult Details(string id)
+        {
+            var projectInDb = this.Data.Projects.All().FirstOrDefault(p => p.Id.ToString() == id);
+            if (projectInDb == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var project = new ProjectDetailsViewModel();
+            project = Mapper.Map(projectInDb, project);
+
+            ViewBag.CanInvite = false;
+
+            if(project.Users.Contains(this.CurrentUser))
+            {
+                ViewBag.CanInvite = true;
+                ViewBag.CurrentUserId = this.CurrentUser.Id;
+            }
+
+            return View(project);
+        }
+
         #region Helpers
 
         public enum ProjectMessage

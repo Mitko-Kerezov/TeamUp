@@ -58,6 +58,11 @@
                 return RedirectToAction("Index");
             }
 
+            if (CurrentUser.Id != userInDb.Id)
+            {
+                return RedirectToAction("Index");
+            }
+
             if (!projectInDb.Users.Contains(userInDb) || !userInDb.Projects.Contains(projectInDb))
             {
                 return RedirectToAction("Index");

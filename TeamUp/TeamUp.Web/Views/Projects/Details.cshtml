@@ -14,7 +14,7 @@
     Users <em>involved</em> in this project
     @if(ViewBag.CanInvite)
     {
-        @Html.ActionLink("Invite someone", "Invite", "Users", new { projectId = Model.Id, userId = ViewBag.CurrentUserId  }, new { @class = "btn btn-success pull-right" })
+        @Html.ActionLink("Invite someone", "Invite", "Invite", new { projectId = Model.Id, userId = ViewBag.CurrentUserId  }, new { @class = "btn btn-success pull-right" })
     }
     <div class="row">
         @foreach (var user in Model.Users)

@@ -1,22 +1,23 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using TeamUp.Web.Models;
-using TeamUp.Models;
-using System.Collections.Generic;
-using TeamUp.Data;
-
-namespace TeamUp.Web.Controllers
+﻿namespace TeamUp.Web.Controllers
 {
-    [Authorize]
-    public class AccountController : BaseController
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    
+    using TeamUp.Web.Models;
+    using TeamUp.Models;
+    using TeamUp.Data;
+
+    using Helpers;
+    public class AccountController : BaseAuthorizeController
     {
         private ApplicationUserManager _userManager;
 
@@ -148,23 +149,8 @@ namespace TeamUp.Web.Controllers
         public ActionResult Register()
         {
             RegisterViewModelGet model = new RegisterViewModelGet();
-            var categories = this.Data.ProgrammingCategories
-                                .All()
-                                .Select(c => new CheckBoxItem()
-                                {
-                                    Text = c.Name,
-                                    Value = c.Name
-                                })
-                                .ToList();
-            var skills = this.Data.Skills
-                                .All()
-                                .Select(s => new CheckBoxItem()
-                                {
-                                    Text = s.Name,
-                                    Value = s.Name
-                                })
-                                .ToList();
-
+            var categories = SkillAndCategoryHelper.GetCategoriesFromDbAsCheckBoxes(this.Data);
+            var skills = SkillAndCategoryHelper.GetSkillsFromDbAsCheckBoxes(this.Data);
             model.AdditionalCategories = new AdditionalCategoryAndSkillModel(categories, skills);
             return View(model);
         }
@@ -188,9 +174,9 @@ namespace TeamUp.Web.Controllers
                     if (model.ProgrammingCategories != null)
                     {
                         // If the user chose to add categories on registration
-                        foreach (var cateogry in model.ProgrammingCategories)
+                        foreach (var category in model.ProgrammingCategories)
                         {
-                            var categoryInDb = this.Data.ProgrammingCategories.All().First(c => c.Name == cateogry);
+                            var categoryInDb = this.Data.ProgrammingCategories.All().First(c => c.Name == category);
 
                             userInDb.ProgrammingCategories.Add(categoryInDb);
                             categoryInDb.Users.Add(userInDb);

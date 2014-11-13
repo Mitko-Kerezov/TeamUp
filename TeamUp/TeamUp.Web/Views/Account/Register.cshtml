@@ -15,7 +15,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.EditorFor(m => m.Email)
             </div>
         </div>
         <div class="form-group">
@@ -48,13 +48,14 @@
             @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
         </fieldset>
     </fieldset>
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
         </div>
-        }
+    </div>
+}
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/register")
-        }
+@section Scripts {
+    @Scripts.Render("~/bundles/register")
+    
+}

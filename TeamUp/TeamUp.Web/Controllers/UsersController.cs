@@ -13,6 +13,8 @@
 
     using Models;
     using TeamUp.Data;
+    using System.Linq.Expressions;
+    using TeamUp.Models;
 
     public class UsersController : BaseAuthorizeController
     {
@@ -43,47 +45,14 @@
             return View(user);
         }
 
-        // GET: Users/Invite?projectId={projectId}&userId={userId}
-        public ActionResult Invite(string projectId, string userId)
-        {
-            var projectInDb = this.Data.Projects.All().FirstOrDefault(p => p.Id.ToString() == projectId);
-            if (projectInDb == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            var userInDb = this.Data.Users.All().FirstOrDefault(u => u.Id.ToString() == userId);
-            if (userInDb == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            if (CurrentUser.Id != userInDb.Id)
-            {
-                return RedirectToAction("Index");
-            }
-
-            if (!projectInDb.Users.Contains(userInDb) || !userInDb.Projects.Contains(projectInDb))
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View();
-        }
-
+        
+        // Kendo UI's grid gets data from here
         [HttpPost]
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
             var users = this.Data.Users
                             .All()
                             .Project().To<GridUserViewModel>()
-                            //.Select(u => new
-                            //{
-                            //    Id = u.Id,
-                            //    Email = u.Email,
-                            //    Skills = u.Skills.Select(s => s.Name).Select(s => string.Join(" ", s)),
-                            //    ProgrammingCategories = u.ProgrammingCategories.Select(p => p.Name)
-                            //})
                             .ToDataSourceResult(request);
             return this.Json(users);
         }

@@ -13,9 +13,13 @@
 
         public string Email { get; set; }
 
+        public Occupation Occupation { get; set; }
+
         public ICollection<string> ProgrammingCategories { get; set; }
 
         public ICollection<string> Skills { get; set; }
+
+        public ICollection<string> Projects { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
@@ -24,7 +28,10 @@
                             o => o.MapFrom(b => b.Skills.Select(s => s.Name).ToList())
                         )
                         .ForMember(t => t.ProgrammingCategories,
-                            o => o.MapFrom(b => b.ProgrammingCategories.Select(s => s.Name).ToList())
+                            o => o.MapFrom(b => b.ProgrammingCategories.Select(p => p.Name).ToList())
+                        )
+                        .ForMember(t => t.Projects,
+                            o => o.MapFrom(b => b.Projects.Select(p => p.Name).ToList())
                         );
         }
     }

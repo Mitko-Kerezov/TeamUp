@@ -197,12 +197,14 @@
     <Compile Include="Controllers\BaseAuthorizeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SkillAndCategoryHelper.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -213,6 +215,9 @@
     <Compile Include="Models\ChangeSkillsModels.cs" />
     <Compile Include="Models\CheckBoxItem.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
+    <Compile Include="Models\InviteUserViewModelBase.cs" />
+    <Compile Include="Models\InviteUserViewModelGet.cs" />
+    <Compile Include="Models\InviteUserViewModelPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
@@ -282,9 +287,11 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Users\Invite.cshtml" />
+    <Content Include="Views\Invite\Invite.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_UsersGridPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SingleLineText.cshtml" />
+    <Content Include="Views\Invite\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

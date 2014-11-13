@@ -10,6 +10,8 @@
             columns.Bound(u => u.Email).ClientTemplate("<a href=\"/Users/Details/#=Id#\">#=Email#</a>");
             columns.Bound(u => u.Skills).ClientTemplate("#=generateTemplate(Skills)#").Sortable(false).Filterable(false);
             columns.Bound(u => u.ProgrammingCategories).ClientTemplate("#=generateTemplate(ProgrammingCategories)#").Sortable(false).Filterable(false);
+            columns.Bound(u => u.Projects).ClientTemplate("#=generateTemplate(Projects)#").Sortable(false).Filterable(false);
+            columns.Bound(u => u.Occupation);//.ClientTemplate("#=generateTemplate(Projects)#").Sortable(false).Filterable(false);
         })
     .Filterable()
     .Sortable()

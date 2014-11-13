@@ -68,6 +68,7 @@ namespace TeamUp.Web.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [UIHint("SingleLineText")]
         public string Email { get; set; }
 
         [Required]

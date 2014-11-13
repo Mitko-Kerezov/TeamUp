@@ -1,44 +1,11 @@
 ﻿@{
     ViewBag.Title = "Users";
-    const string ControllerName = "Users";
+    
+    // Needed for the kendo Partial
+    ViewBag.Method = "Read";
+    ViewBag.Controller = "Users";
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@(Html.Kendo()
-    .Grid<TeamUp.Web.Models.GridUserViewModel>()
-    .Name("grid")
-    .Columns(columns =>
-        {
-            columns.Bound(u => u.Email).ClientTemplate("<a href=\"/Users/Details/#=Id#\">#=Email#</a>");
-            columns.Bound(u => u.Skills).ClientTemplate("#=generateTemplate(Skills)#").Sortable(false).Filterable(false).Groupable(false);
-            columns.Bound(u => u.ProgrammingCategories).ClientTemplate("#=generateTemplate(ProgrammingCategories)#").Sortable(false).Filterable(false).Groupable(false);
-        })
-    .Scrollable()
-    .Filterable()
-    .Groupable()
-    .Sortable()
-    .Pageable(pageable => pageable
-        .Refresh(true)
-        .PageSizes(true)
-        .ButtonCount(5))
-    .DataSource(data =>
-        data
-        .Ajax()
-        .Read(read => read.Action("Read", ControllerName)))
-)
-@section scripts
-{
-    <script>
-        function generateTemplate(data) {
-            var template = "";
-            if (data != null) {
-
-                for (var i = 0; i < data.length; i++) {
-                    template += data[i] + " ";
-                }
-            }
-            return template;
-        }
-    </script>
-}
+@Html.Partial("_UsersGridPartial")

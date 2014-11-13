@@ -76,14 +76,14 @@
         {
             var users = this.Data.Users
                             .All()
-                            //.Project().To<GridUserViewModel>()
-                            .Select(u => new
-                            {
-                                Id = u.Id,
-                                Email = u.Email,
-                                Skills = u.Skills.Select(s => s.Name),
-                                ProgrammingCategories = u.ProgrammingCategories.Select(p => p.Name)
-                            })
+                            .Project().To<GridUserViewModel>()
+                            //.Select(u => new
+                            //{
+                            //    Id = u.Id,
+                            //    Email = u.Email,
+                            //    Skills = u.Skills.Select(s => s.Name).Select(s => string.Join(" ", s)),
+                            //    ProgrammingCategories = u.ProgrammingCategories.Select(p => p.Name)
+                            //})
                             .ToDataSourceResult(request);
             return this.Json(users);
         }

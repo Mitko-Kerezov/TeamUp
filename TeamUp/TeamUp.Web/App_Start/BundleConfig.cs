@@ -28,6 +28,9 @@ namespace TeamUp.Web
 
         private static void RegisterScripts(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/kendoGridTemplate").Include(
+                        "~/Scripts/gridTemplateGenerator.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/kendogrid").Include(
                         "~/Scripts/kendo/kendo.web.min.js",
                         "~/Scripts/kendo/kendo.window.min.js",

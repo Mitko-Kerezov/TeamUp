@@ -1,0 +1,25 @@
+﻿@{
+    var methodName = ViewBag.Method;
+    var controllerName = ViewBag.Controller;
+}
+@(Html.Kendo()
+    .Grid<TeamUp.Web.Models.GridUserViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+        {
+            columns.Bound(u => u.Email).ClientTemplate("<a href=\"/Users/Details/#=Id#\">#=Email#</a>");
+            columns.Bound(u => u.Skills).ClientTemplate("#=generateTemplate(Skills)#").Sortable(false).Filterable(false);
+            columns.Bound(u => u.ProgrammingCategories).ClientTemplate("#=generateTemplate(ProgrammingCategories)#").Sortable(false).Filterable(false);
+        })
+    .Filterable()
+    .Sortable()
+    .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+    .DataSource(data =>
+        data
+        .Ajax()
+        .Read(read => read.Action(methodName, controllerName)))
+)
+@Scripts.Render("~/bundles/kendoGridTemplate")

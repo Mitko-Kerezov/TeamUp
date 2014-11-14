@@ -5,6 +5,8 @@
 
     public interface ITeamUpData
     {
+        ITeamUpContext Context { get; }
+
         IGenericRepository<ChatMessage> ChatMessages { get; }
 
         IGenericRepository<Skill> Skills { get; }

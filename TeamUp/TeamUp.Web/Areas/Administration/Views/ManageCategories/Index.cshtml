@@ -1,0 +1,13 @@
+﻿@using TeamUp.Web.Areas.Administration.Models
+@{
+    ViewBag.Title = "Manage all programming categories";
+
+    // Needed for the kendo Partial
+    ViewBag.Controller = "ManageCategories";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_CategoriesAndSkillsGridPartial")
+
+

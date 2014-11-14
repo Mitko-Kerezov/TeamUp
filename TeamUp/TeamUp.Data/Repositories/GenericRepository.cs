@@ -20,6 +20,11 @@
             return this.context.Set<T>();
         }
 
+        public virtual T GetById(object id)
+        {
+            return this.context.Set<T>().Find(id);
+        }
+
         public IQueryable<T> SearchFor(Expression<Func<T, bool>> conditions)
         {
             return this.All().Where(conditions);
@@ -39,6 +44,15 @@
         {
             this.ChangeState(entity, EntityState.Deleted);
             return entity;
+        }
+
+        public void Delete(object id)
+        {
+            var entity = this.GetById(id);
+            if (entity != null)
+            {
+                this.Delete(entity);
+            }
         }
 
         public void Detach(T entity)

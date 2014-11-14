@@ -3,6 +3,6 @@
     var checkBoxesName = ViewBag.CheckBoxesName;
 }
 <div class="col-md-3 text-center">
-    <label class="control-label" for=@Model.Value>@Model.Text</label>
+    <label class="control-label" for="@Model.Value">@Model.Text</label>
     <input class="form-control" value="@Model.Value" name="@checkBoxesName" id="@Model.Value" checked=@Model.Selected type="checkbox" />
 </div>

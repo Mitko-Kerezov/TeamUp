@@ -1,0 +1,12 @@
+﻿@using Kendo.Mvc.UI;
+@using TeamUp.Web.Areas.Administration.Models;
+
+@model AdministrationViewModel
+<div class="errors"></div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Name, new { @class = "k-textbox" })
+    @Html.ValidationMessageFor(model => model.Name)
+</div>

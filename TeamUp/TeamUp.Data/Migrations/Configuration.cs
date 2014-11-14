@@ -4,6 +4,10 @@ namespace TeamUp.Data.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     using TeamUp.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TeamUp.Data.TeamUpDbContext>
@@ -15,23 +19,153 @@ namespace TeamUp.Data.Migrations
             ContextKey = "TeamUp.Data.TeamUpDbContext";
         }
 
-        protected override void Seed(TeamUp.Data.TeamUpDbContext context)
+        protected override void Seed(TeamUpDbContext context)
         {
-            if (!context.ProgrammingCategories.Any())
+            var userStore = new UserStore<TeamUpUser>(context);
+            var userManager = new UserManager<TeamUpUser>(userStore);
+
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            this.SeedCategories(context);
+            this.SeedSkills(context);
+            this.SeedRoles(context, roleManager);
+            this.SeedUsersAndAdmins(context, userManager);
+        }
+
+        private void SeedUsersAndAdmins(TeamUpDbContext context, UserManager<TeamUpUser> manager)
+        {
+            if (!context.Users.Any())
             {
-                var categories = new ProgrammingCategory[] { 
-                new ProgrammingCategory(){Name = "Embedded"},
-                new ProgrammingCategory(){Name = "Desktop"},
-                new ProgrammingCategory(){Name = "Mobile"},
-                new ProgrammingCategory(){Name = "Web"}
+                var admin = new TeamUpUser()
+                {
+                    UserName = "admin@gmail.com",
+                    Email = "admin@gmail.com",
+                    Occupation = Occupation.Developer,
                 };
 
-                foreach (var category in categories)
+                manager.Create(admin, "123456");
+
+                manager.AddToRole(admin.Id, "Admin");
+
+                manager.Create(new TeamUpUser()
                 {
-                    context.ProgrammingCategories.Add(category);
+                    UserName = "devOne@gmail.com",
+                    Email = "devOne@gmail.com",
+                    Occupation = Occupation.Developer,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "devTwo@gmail.com",
+                    Email = "devTwo@gmail.com",
+                    Occupation = Occupation.Developer,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "devThree@gmail.com",
+                    Email = "devThree@gmail.com",
+                    Occupation = Occupation.Developer,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "frontOne@gmail.com",
+                    Email = "frontOne@gmail.com",
+                    Occupation = Occupation.FrontEnd,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "frontTwo@gmail.com",
+                    Email = "frontTwo@gmail.com",
+                    Occupation = Occupation.FrontEnd,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "frontThree@gmail.com",
+                    Email = "frontThree@gmail.com",
+                    Occupation = Occupation.FrontEnd,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "QAOne@gmail.com",
+                    Email = "QAOne@gmail.com",
+                    Occupation = Occupation.QA,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "QATwo@gmail.com",
+                    Email = "QATwo@gmail.com",
+                    Occupation = Occupation.QA,
+                }, "123456");
+
+                manager.Create(new TeamUpUser()
+                {
+                    UserName = "QAThree@gmail.com",
+                    Email = "QAThree@gmail.com",
+                    Occupation = Occupation.QA,
+                }, "123456");
+
+                var random = new Random();
+
+                this.LinkUsersToCategories(context, random);
+                this.LinkUsersToSkills(context, random);
+            }
+        }
+
+        private void LinkUsersToSkills(TeamUpDbContext context, Random random)
+        {
+            var allUsers = context.Users.ToList();
+            var allSkills = context.Skills.ToList();
+
+            foreach (var user in allUsers)
+            {
+                foreach (var skill in allSkills)
+                {
+                    if (random.Next() % 2 == 0)
+                    {
+                        user.Skills.Add(skill);
+                        skill.Users.Add(user);
+                    }
                 }
             }
+        }
 
+        private void LinkUsersToCategories(TeamUpDbContext context, Random random)
+        {
+            var allUsers = context.Users.ToList();
+            var allCategories = context.ProgrammingCategories.ToList();
+
+            foreach (var user in allUsers)
+            {
+                foreach (var category in allCategories)
+                {
+                    if (random.Next() % 2 == 0)
+                    {
+                        user.ProgrammingCategories.Add(category);
+                        category.Users.Add(user);
+                    }
+                }
+            }
+        }
+
+        private void SeedRoles(TeamUpDbContext context, RoleManager<IdentityRole> manager)
+        {
+            if (!context.Roles.Any())
+            {
+                manager.Create(new IdentityRole("Admin"));
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedSkills(TeamUpDbContext context)
+        {
             if (!context.Skills.Any())
             {
                 var skills = new Skill[] { 
@@ -52,6 +186,26 @@ namespace TeamUp.Data.Migrations
                 foreach (var skill in skills)
                 {
                     context.Skills.Add(skill);
+                }
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedCategories(TeamUpDbContext context)
+        {
+            if (!context.ProgrammingCategories.Any())
+            {
+                var categories = new ProgrammingCategory[] { 
+                new ProgrammingCategory(){Name = "Embedded"},
+                new ProgrammingCategory(){Name = "Desktop"},
+                new ProgrammingCategory(){Name = "Mobile"},
+                new ProgrammingCategory(){Name = "Web"}
+                };
+
+                foreach (var category in categories)
+                {
+                    context.ProgrammingCategories.Add(category);
                 }
             }
 

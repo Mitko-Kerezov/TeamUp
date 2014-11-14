@@ -67,6 +67,7 @@
             {
                 model.Email = string.Empty;
             }
+
             var users = this.Data.Users
                                 .All()
                                 .Where(u => u.Email.Contains(model.Email) && u.Id != this.CurrentUser.Id);

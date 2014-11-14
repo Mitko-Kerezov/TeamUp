@@ -17,6 +17,14 @@ namespace TeamUp.Data
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public ITeamUpContext Context
+        {
+            get
+            {
+                return this.context;
+            }
+        }
+
         public IGenericRepository<ChatMessage> ChatMessages
         {
             get

@@ -7,9 +7,10 @@
     @Styles.Render(string.Format("~/Content/BootstrapThemes/{0}.css", ViewBag.ThemeChosen.ToString()))
     @Styles.Render("~/Content/kendo")
     @Styles.Render("~/Content/site.css")
+
+    @RenderSection("adminscripts", required: false)
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,11 +25,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { })</li>
+                        <li>@Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { })</li>
+                        if (this.User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Manage all skills", "Index", "ManageSkills", new { area = "Administration" }, new { })</li>
+                            <li>@Html.ActionLink("Manage all categories", "Index", "ManageCategories", new { area = "Administration" }, new { })</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

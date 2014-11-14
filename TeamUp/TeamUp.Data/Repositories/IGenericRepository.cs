@@ -12,9 +12,13 @@
 
         void Add(T entity);
 
+        T GetById(object id);
+
         void Update(T entity);
 
         T Delete(T entity);
+
+        void Delete(object id);
 
         void Detach(T entity);
 

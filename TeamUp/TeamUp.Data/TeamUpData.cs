@@ -25,11 +25,11 @@ namespace TeamUp.Data
             }
         }
 
-        public IGenericRepository<ChatMessage> ChatMessages
+        public IGenericRepository<Message> Messages
         {
             get
             {
-                return this.GetRepository<ChatMessage>();
+                return this.GetRepository<Message>();
             }
         }
 

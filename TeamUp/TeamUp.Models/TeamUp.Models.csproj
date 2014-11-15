@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatMessage.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Occupation.cs" />
     <Compile Include="ProgrammingCategory.cs" />
     <Compile Include="Project.cs" />

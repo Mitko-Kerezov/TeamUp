@@ -18,7 +18,7 @@ namespace TeamUp.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TeamUpDbContext, Configuration>());
         }
 
-        public IDbSet<ChatMessage> ChatMessages { get; set; }
+        public IDbSet<Message> Messages { get; set; }
 
         public IDbSet<Skill> Skills { get; set; }
 

@@ -6,7 +6,7 @@
 
     public interface ITeamUpContext
     {
-        IDbSet<ChatMessage> ChatMessages { get; set; }
+        IDbSet<Message> Messages { get; set; }
 
         IDbSet<Skill> Skills { get; set; }
 

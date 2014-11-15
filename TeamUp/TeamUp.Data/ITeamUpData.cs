@@ -7,7 +7,7 @@
     {
         ITeamUpContext Context { get; }
 
-        IGenericRepository<ChatMessage> ChatMessages { get; }
+        IGenericRepository<Message> Messages { get; }
 
         IGenericRepository<Skill> Skills { get; }
 

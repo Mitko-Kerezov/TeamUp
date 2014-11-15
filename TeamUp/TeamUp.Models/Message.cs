@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TeamUp.Models
 {
-    public class ChatMessage
+    public class Message
     {
         public int Id { get; set; }
 

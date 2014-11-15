@@ -38,7 +38,7 @@
         {
             if (model != null && ModelState.IsValid)
             {
-                if(this.IsUnique<T>(uniqueName))
+                if (this.IsUnique<T>(uniqueName))
                 {
                     var dbModel = Mapper.Map<T>(model);
                     this.ChangeEntityStateAndSave(dbModel, EntityState.Added);

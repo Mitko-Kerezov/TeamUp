@@ -1,8 +1,16 @@
-﻿using System;
-namespace TeamUp.Models
+﻿namespace TeamUp.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class Message
     {
+        public Message()
+        {
+            this.DateSent = DateTime.Now;
+            this.IsRead = false;
+        }
+
         public int Id { get; set; }
 
         public string AuthorId { get; set; }
@@ -11,11 +19,13 @@ namespace TeamUp.Models
 
         public string RecipientId { get; set; }
 
-        public virtual TeamUpUser Recipient { get; set; }
+        public TeamUpUser Recipient { get; set; }
 
-        public string Message { get; set; }
+        [Required]
+        public string Content { get; set; }
 
-        public DateTime DateTime { get; set; }
+        [Required]
+        public DateTime DateSent { get; set; }
 
         public bool IsRead { get; set; }
 

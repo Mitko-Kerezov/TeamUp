@@ -23,7 +23,7 @@ namespace TeamUp.Web
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                 "~/Content/kendo/kendo.common.min.css",
                 "~/Content/kendo/kendo.common-bootstrap.min.css",
-                "~/Content/kendo/kendo.silver.min.css")); 
+                "~/Content/kendo/kendo.silver.min.css"));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
@@ -50,6 +50,11 @@ namespace TeamUp.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 //.Include("~/Scripts/jquery-{version}.js"));
                 .Include("~/Scripts/kendo/jquery.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalunobtrusivecustom").Include(
+                        "~/Scripts/jquery-1.8.js",
+                        "~/Scripts/jquery.unobtrusive*",
+                        "~/Scripts/removeButton.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

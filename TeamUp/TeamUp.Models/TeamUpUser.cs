@@ -22,13 +22,19 @@
         private ICollection<ProgrammingCategory> programmingCategories;
         private ICollection<Skill> skills;
         private ICollection<Project> projects;
+        private ICollection<Message> myMessages;
 
         public TeamUpUser()
         {
             this.programmingCategories = new HashSet<ProgrammingCategory>();
             this.skills = new HashSet<Skill>();
             this.projects = new HashSet<Project>();
+            this.myMessages = new HashSet<Message>();
         }
+
+        public Occupation Occupation { get; set; }
+
+        public ThemeChoice ThemeChosen { get; set; }
 
         public virtual ICollection<ProgrammingCategory> ProgrammingCategories
         {
@@ -66,10 +72,16 @@
             }
         }
 
-        public Occupation Occupation { get; set; }
-
-        public ThemeChoice ThemeChosen { get; set; }
-
+        public virtual ICollection<Message> MyMessages
+        {
+            get
+            {
+                return this.myMessages;
+            }
+            set
+            {
+                this.myMessages = value;
+            }
+        }
     }
-
 }

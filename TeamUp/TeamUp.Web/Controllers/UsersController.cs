@@ -42,6 +42,15 @@
 
             var user = new UserDetailsViewModel();
             user = Mapper.Map(userInDb, user);
+
+            ViewBag.CanInvite = user.Id == this.CurrentUser.Id ? false : true;
+
+            // Comes from the MessagesController when a message is successfully sent to this user
+            if (TempData["SentSuccess"] != null)
+            {
+                ViewBag.StatusMessage = "Your message was successfully sent!";
+            }
+
             return View(user);
         }
 

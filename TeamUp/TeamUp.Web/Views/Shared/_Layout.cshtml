@@ -25,11 +25,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { })</li>
                         <li>@Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { })</li>
+                        <li>@Html.ActionLink("My messages", "Index", "Messages", new { area = "" }, new { })</li>
                         if (this.User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Manage all skills", "Index", "ManageSkills", new { area = "Administration" }, new { })</li>
@@ -46,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - TeamUp</p>
         </footer>
     </div>
 

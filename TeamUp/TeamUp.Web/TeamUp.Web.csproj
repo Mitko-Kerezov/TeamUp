@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +228,8 @@
     <Compile Include="Models\InviteUserViewModelGet.cs" />
     <Compile Include="Models\InviteUserViewModelPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Messages\MessageViewModel.cs" />
+    <Compile Include="Models\Messages\ReadMessageViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\Projects\GridProjectViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
@@ -270,7 +273,10 @@
     <Content Include="Scripts\gridTemplateGenerator.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.8.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -278,6 +284,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\projectGridTemplates.js" />
     <Content Include="Scripts\register.js" />
+    <Content Include="Scripts\removeButton.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -323,6 +330,9 @@
     <Content Include="Views\Shared\EditorTemplates\SingleLineText.cshtml" />
     <Content Include="Views\Invite\SearchResults.cshtml" />
     <Content Include="Views\Projects\All.cshtml" />
+    <Content Include="Views\Messages\Send.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultiLineText.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

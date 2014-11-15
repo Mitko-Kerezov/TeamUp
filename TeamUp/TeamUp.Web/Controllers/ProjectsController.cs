@@ -16,7 +16,7 @@
     using TeamUp.Models;
     using TeamUp.Web.Models;
     using TeamUp.Web.Models.Projects;
-    
+
     public class ProjectsController : BaseAuthorizeController
     {
         public ProjectsController(ITeamUpData data)
@@ -79,7 +79,7 @@
 
             ViewBag.CanInvite = false;
 
-            if(project.Users.Contains(this.CurrentUser))
+            if (project.Users.Contains(this.CurrentUser))
             {
                 ViewBag.CanInvite = true;
                 ViewBag.CurrentUserId = this.CurrentUser.Id;

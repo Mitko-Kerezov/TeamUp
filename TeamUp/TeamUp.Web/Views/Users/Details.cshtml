@@ -4,6 +4,11 @@
 }
 
 <h2>@Model.Email</h2>
+@if (ViewBag.CanInvite)
+{
+    @Html.ActionLink("Message me!", "Send", "Messages",new { id = Model.Id }, new { @class = "btn btn-success pull-right" })
+    <div class="clearfix"></div>
+}
 <div class="row">
     <div class="col-lg-6">
         <h4>Categories I'm <em>interested</em> in</h4>
@@ -33,6 +38,7 @@
             }
         }
     </div>
+    
 </div>
 <div class="row text-center">
     <h4>Projects I'm <em>involved</em> in</h4>

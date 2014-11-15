@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TeamUp.Web.Models.Messages.ReadMessageViewModel>
+@{
+    ViewBag.Title = "My messages";
+}
+
+<h2>@ViewBag.Title.</h2>
+@foreach (var message in Model)
+{
+    <div class="col-lg-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">From <strong>@message.Author.Email</strong></h3>
+            </div>
+            <div class="panel-body">
+                <p>@message.Content</p>
+                <hr />
+                @if (!message.IsRead)
+                {
+                    string currentLinkId = "ajax-link-" + message.Id;
+                    <div class="pull-right">
+                        @Ajax.ActionLink("Mark as read", "MarkAsRead", "Messages", 
+                                        new { id = message.Id },
+                                        new AjaxOptions() { HttpMethod = "POST", OnSuccess="removeButton('"+currentLinkId+"')" },
+                                         new { @class = "btn btn-default", id = currentLinkId })
+                    </div>
+                }
+                <p class="text-muted">@message.DateSent</p>
+            </div>
+        </div>
+    </div>
+}
+<div class="clearfix"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryvalunobtrusivecustom")
+}

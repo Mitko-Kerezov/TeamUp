@@ -7,10 +7,15 @@
     using System.Web.Mvc;
 
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.UI;
+    using Kendo.Mvc.Extensions;
 
     using TeamUp.Data;
     using TeamUp.Models;
     using TeamUp.Web.Models;
+    using TeamUp.Web.Models.Projects;
     
     public class ProjectsController : BaseAuthorizeController
     {
@@ -81,6 +86,22 @@
             }
 
             return View(project);
+        }
+
+        // GET: Projects/All
+        public ActionResult All()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var users = this.Data.Projects
+                            .All()
+                            .Project().To<GridProjectViewModel>()
+                            .ToDataSourceResult(request);
+            return this.Json(users);
         }
 
         #region Helpers

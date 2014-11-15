@@ -10,6 +10,7 @@
     @Html.AntiForgeryToken()
     <h4>Look for a user to invite</h4>
     <fieldset>
+        <legend>Email (or part of it)</legend>
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
@@ -17,12 +18,18 @@
                 @Html.EditorFor(m => m.Email)
             </div>
         </div>
-        @Html.Partial("~/Views/Shared/_ProgrammingCategoryCheckboxesPartial.cshtml", Model.AdditionalCategories.Categories)
-        @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
+        <fieldset>
+            <legend>Fields of interest</legend>
+            @Html.Partial("~/Views/Shared/_ProgrammingCategoryCheckboxesPartial.cshtml", Model.AdditionalCategories.Categories)
+        </fieldset>
+        <fieldset>
+            <legend>Skills</legend>
+            @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
+        </fieldset>
     </fieldset>
     <div class="form-group">
         <div class="col-md-offset-4 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-primary btn-lg" value="Find" />
         </div>
     </div>
 }

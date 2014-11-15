@@ -28,6 +28,9 @@ namespace TeamUp.Web
 
         private static void RegisterScripts(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/kendoProjectsGridTemplate").Include(
+                "~/Scripts/projectGridTemplates.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/admin/kendoGridErrorHandler").Include(
                 "~/Areas/Administration/Scripts/gridErrorHandler.js"));
 

@@ -1,6 +1,7 @@
 ﻿namespace TeamUp.Models
 {
     using System;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public class Message
@@ -8,7 +9,6 @@
         public Message()
         {
             this.DateSent = DateTime.Now;
-            this.IsRead = false;
         }
 
         public int Id { get; set; }
@@ -27,7 +27,11 @@
         [Required]
         public DateTime DateSent { get; set; }
 
+        [DefaultValue(false)]
         public bool IsRead { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsInvitation { get; set; }
 
     }
 }

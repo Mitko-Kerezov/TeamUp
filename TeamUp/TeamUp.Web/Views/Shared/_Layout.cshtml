@@ -27,9 +27,9 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { })</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { })</li>
-                        <li>@Html.ActionLink("My messages", "Index", "Messages", new { area = "" }, new { })</li>
+                        <li><a href="/Projects">Projects</a></li>
+                        <li><a href="/Users">Users</a></li>
+                        <li><a href="/Messages">My messages <span class="badge">@ViewBag.UnreadMessagesCount</span></a></li>
                         if (this.User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Manage all skills", "Index", "ManageSkills", new { area = "Administration" }, new { })</li>
@@ -43,6 +43,7 @@
     </div>
     <div class="container body-content">
         <p class="text-success">@ViewBag.StatusMessage</p>
+        <p class="text-danger">@ViewBag.ErrorMessage</p>
         @RenderBody()
         <hr />
         <footer>

@@ -3,7 +3,7 @@
     ViewBag.Title = "Invite";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Invite", "Invite", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -27,6 +27,7 @@
             @Html.Partial("~/Views/Shared/_SkillCheckboxesPartial.cshtml", Model.AdditionalCategories.Skills)
         </fieldset>
     </fieldset>
+    <input type="hidden" name="ProjectId" value="@TempData["projectId"]" />
     <div class="form-group">
         <div class="col-md-offset-4 col-md-10">
             <input type="submit" class="btn btn-primary btn-lg" value="Find" />

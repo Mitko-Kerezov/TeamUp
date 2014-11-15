@@ -11,7 +11,11 @@
             columns.Bound(u => u.Skills).ClientTemplate("#=generateTemplate(Skills)#").Sortable(false).Filterable(false);
             columns.Bound(u => u.ProgrammingCategories).ClientTemplate("#=generateTemplate(ProgrammingCategories)#").Sortable(false).Filterable(false);
             columns.Bound(u => u.Projects).ClientTemplate("#=generateTemplate(Projects)#").Sortable(false).Filterable(false);
-            columns.Bound(u => u.Occupation);//.ClientTemplate("#=generateTemplate(Projects)#").Sortable(false).Filterable(false);
+            columns.Bound(u => u.Occupation);
+            if (ViewBag.Title == "Search Results")
+            {
+                columns.Template(@<text></text>).ClientTemplate("<a href=\"/Invite/SendInvitation?projectId=" + ViewBag.ProjectId + "&userId=#=Id#\" class=\"btn btn-default\">Send Invitation</a>");
+            }
         })
     .Filterable()
     .Sortable()

@@ -27,9 +27,19 @@
             {
                 this.CurrentUser = this.Data.Users.All().FirstOrDefault(u => u.Id == currentUserId);
             }
+
             // Calling BeginExecute before PrepareSystemMessages for the TempData to has values
             var result = base.BeginExecute(requestContext, callback, state);
             this.ViewBag.ThemeChosen = this.CurrentUser == null ? ThemeChoice.Default : this.CurrentUser.ThemeChosen;
+            if (this.CurrentUser != null)
+            {
+                var unreadMessagesCount = this.CurrentUser.MyMessages.Count(m => m.IsRead == false);
+                if (unreadMessagesCount > 0)
+                {
+                    this.ViewBag.UnreadMessagesCount = unreadMessagesCount;
+                }
+            }
+
             return result;
         }
 

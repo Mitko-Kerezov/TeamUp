@@ -59,7 +59,6 @@
                 var project = new Project();
                 project = Mapper.Map(model, project);
 
-                project.DateCreated = DateTime.Now;
                 project.Users.Add(this.CurrentUser);
                 this.CurrentUser.Projects.Add(project);
 

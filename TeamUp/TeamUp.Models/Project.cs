@@ -12,6 +12,7 @@
         {
             this.users = new HashSet<TeamUpUser>();
             this.Id = Guid.NewGuid();
+            this.DateCreated = DateTime.Now;
         }
 
         public Guid Id { get; set; }

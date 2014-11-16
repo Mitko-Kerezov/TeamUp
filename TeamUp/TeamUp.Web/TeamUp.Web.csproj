@@ -224,6 +224,7 @@
     <Compile Include="Models\ChangeSkillsModels.cs" />
     <Compile Include="Models\CheckBoxItem.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
+    <Compile Include="Models\Invitations\ShowInvitationViewModel.cs" />
     <Compile Include="Models\InviteUserViewModelBase.cs" />
     <Compile Include="Models\InviteUserViewModelGet.cs" />
     <Compile Include="Models\InviteUserViewModelPost.cs" />
@@ -333,6 +334,7 @@
     <Content Include="Views\Messages\Send.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultiLineText.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Invite\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

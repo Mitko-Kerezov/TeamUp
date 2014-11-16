@@ -15,6 +15,7 @@
     using TeamUp.Web.Helpers;
     using TeamUp.Web.Models;
     using TeamUp.Models;
+    using TeamUp.Web.Models.Invitations;
 
     public class InviteController : BaseAuthorizeController
     {
@@ -26,29 +27,40 @@
 
         }
 
+        public ActionResult Index()
+        {
+            var model = this.CurrentUser.MyInvitations
+                        .AsQueryable()
+                        .Project().To<ShowInvitationViewModel>()
+                        .OrderBy(i => i.ShouldShowButton)
+                        .ThenByDescending(i => i.DateSent);
+
+            return View(model);
+        }
+
         // GET: Invite?projectId={projectId}&userId={userId}
         public ActionResult Invite(string projectId, string userId)
         {
             var projectInDb = this.Data.Projects.All().FirstOrDefault(p => p.Id.ToString() == projectId);
             if (projectInDb == null)
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index");
             }
 
             var userInDb = this.Data.Users.All().FirstOrDefault(u => u.Id.ToString() == userId);
             if (userInDb == null)
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index");
             }
 
             if (CurrentUser.Id != userInDb.Id)
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index");
             }
 
             if (!projectInDb.Users.Contains(userInDb) || !userInDb.Projects.Contains(projectInDb))
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index");
             }
 
             InviteUserViewModelGet model = new InviteUserViewModelGet();
@@ -97,7 +109,7 @@
             var projectInDb = this.Data.Projects.All().FirstOrDefault(p => p.Id.ToString() == model.ProjectId);
             if (projectInDb == null)
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index");
             }
 
             users = users.Where(u => u.Projects.Count() == 0 || u.Projects.Any(p => p.Id != projectInDb.Id));
@@ -151,9 +163,9 @@
             }
 
             var invitation = new Invitation() { 
-                
                 AuthorId = this.CurrentUser.Id,
-                RecipientId = invitationRecipient.Id
+                RecipientId = invitationRecipient.Id,
+                Project = projectInDb
             };
 
             this.Data.Invitations.Add(invitation);
@@ -162,6 +174,44 @@
 
             ViewBag.StatusMessage = "Invitation successfully sent";
             return View("SearchResults");
+        }
+
+        [HttpPost]
+        public ActionResult AcceptInvitation(int id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var invitationInDb = this.Data.Invitations.GetById(id);
+                if (invitationInDb.InvitationResponse == InvitationResponseType.NotRead)
+                {
+                    invitationInDb.InvitationResponse = InvitationResponseType.Accepted;
+                    invitationInDb.Project.Users.Add(this.CurrentUser);
+                    this.CurrentUser.Projects.Add(invitationInDb.Project);
+                    this.Data.SaveChanges();
+                }
+
+                return new EmptyResult();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult RejectInvitation(int id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var invitationInDb = this.Data.Invitations.GetById(id);
+                if (invitationInDb.InvitationResponse == InvitationResponseType.NotRead)
+                {
+                    invitationInDb.InvitationResponse = InvitationResponseType.Rejected;
+                    this.Data.SaveChanges();
+                }
+
+                return new EmptyResult();
+            }
+
+            return RedirectToAction("Index");
         }
 
         // Kendo UI's grid gets data from here

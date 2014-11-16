@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TeamUp.Web.Models.Invitations.ShowInvitationViewModel>
+@{
+    ViewBag.Title = "My invitations";
+}
+
+<h2>@ViewBag.Title</h2>
+@if (Model.Count() > 0)
+{
+    foreach (var invitation in Model)
+    {
+        <div class="col-lg-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">From <strong>@invitation.Author.Email</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <p><strong>@invitation.Author.Email</strong> would like to invite you to join the project <strong>@invitation.Project.Name</strong></p>
+                    <hr />
+                    @if (invitation.ShouldShowButton)
+                    {
+                        string currentLinkId = "ajax-links-container-" + invitation.Id;
+                        <div class="pull-right" id="@currentLinkId">
+                            @Ajax.ActionLink("Accept", "AcceptInvitation", "Invite",
+                                        new { id = invitation.Id },
+                                        new AjaxOptions() { HttpMethod = "POST", OnSuccess = "removeButton('" + currentLinkId + "')" },
+                                         new { @class = "btn btn-success", id = currentLinkId })
+                            @Ajax.ActionLink("Reject", "RejectInvitation", "Invite",
+                                        new { id = invitation.Id },
+                                        new AjaxOptions() { HttpMethod = "POST", OnSuccess = "removeButton('" + currentLinkId + "')" },
+                                         new { @class = "btn btn-danger", id = currentLinkId })
+                        </div>
+                    }
+                    <p class="text-muted">@invitation.DateSent</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="clearfix"></div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryvalunobtrusivecustom")
+    }
+}
+else 
+{
+    <div class="jumbotron">You don't have any messages yet :(</div>
+}

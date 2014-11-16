@@ -21,6 +21,8 @@
 
         public TeamUpUser Recipient { get; set; }
 
+        public virtual Project Project { get; set; }
+
         [Required]
         public DateTime DateSent { get; set; }
 

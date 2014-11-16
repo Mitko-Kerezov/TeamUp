@@ -30,7 +30,7 @@
                         <li><a href="/Projects">Projects</a></li>
                         <li><a href="/Users">Users</a></li>
                         <li><a href="/Messages">My messages <span class="badge">@ViewBag.UnreadMessagesCount</span></a></li>
-                        <li><a href="/Messages">My invitations <span class="badge">@ViewBag.UnreadInvitationsCount</span></a></li>
+                        <li><a href="/Invite">My invitations <span class="badge">@ViewBag.UnreadInvitationsCount</span></a></li>
                         if (this.User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Manage all skills", "Index", "ManageSkills", new { area = "Administration" }, new { })</li>

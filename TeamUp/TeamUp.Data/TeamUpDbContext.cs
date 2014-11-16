@@ -26,6 +26,8 @@ namespace TeamUp.Data
 
         public IDbSet<Project> Projects { get; set; }
 
+        public IDbSet<Invitation> Invitations { get; set; }
+
         public IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();

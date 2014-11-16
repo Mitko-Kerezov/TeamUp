@@ -150,15 +150,14 @@
                 return View("SearchResults");
             }
 
-            var invitation = new Message() { 
+            var invitation = new Invitation() { 
+                
                 AuthorId = this.CurrentUser.Id,
-                Content = "Invitation to a dark sleep",
-                IsInvitation = true,
                 RecipientId = invitationRecipient.Id
             };
 
-            this.Data.Messages.Add(invitation);
-            invitationRecipient.MyMessages.Add(invitation);
+            this.Data.Invitations.Add(invitation);
+            invitationRecipient.MyInvitations.Add(invitation);
             this.Data.SaveChanges();
 
             ViewBag.StatusMessage = "Invitation successfully sent";

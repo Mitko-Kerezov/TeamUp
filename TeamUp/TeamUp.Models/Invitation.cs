@@ -4,9 +4,9 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class Message
+    public class Invitation
     {
-        public Message()
+        public Invitation()
         {
             this.DateSent = DateTime.Now;
         }
@@ -22,12 +22,9 @@
         public TeamUpUser Recipient { get; set; }
 
         [Required]
-        public string Content { get; set; }
-
-        [Required]
         public DateTime DateSent { get; set; }
 
-        [DefaultValue(false)]
-        public bool IsRead { get; set; }
+        [DefaultValue(InvitationResponseType.NotRead)]
+        public InvitationResponseType InvitationResponse { get; set; }
     }
 }

@@ -38,6 +38,12 @@
                 {
                     this.ViewBag.UnreadMessagesCount = unreadMessagesCount;
                 }
+
+                var unreadInvitationsCount = this.CurrentUser.MyInvitations.Count(i => i.InvitationResponse == InvitationResponseType.NotRead);
+                if (unreadInvitationsCount > 0)
+                {
+                    this.ViewBag.UnreadInvitationsCount = unreadInvitationsCount;
+                }
             }
 
             return result;

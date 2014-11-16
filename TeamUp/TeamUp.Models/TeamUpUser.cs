@@ -23,6 +23,7 @@
         private ICollection<Skill> skills;
         private ICollection<Project> projects;
         private ICollection<Message> myMessages;
+        private ICollection<Invitation> myInvitations;
 
         public TeamUpUser()
         {
@@ -30,6 +31,7 @@
             this.skills = new HashSet<Skill>();
             this.projects = new HashSet<Project>();
             this.myMessages = new HashSet<Message>();
+            this.myInvitations = new HashSet<Invitation>();
         }
 
         public Occupation Occupation { get; set; }
@@ -81,6 +83,18 @@
             set
             {
                 this.myMessages = value;
+            }
+        }
+
+        public virtual ICollection<Invitation> MyInvitations
+        {
+            get
+            {
+                return this.myInvitations;
+            }
+            set
+            {
+                this.myInvitations = value;
             }
         }
     }

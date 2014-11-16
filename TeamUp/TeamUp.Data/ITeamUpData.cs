@@ -15,6 +15,8 @@
 
         IGenericRepository<Project> Projects { get; }
 
+        IGenericRepository<Invitation> Invitations { get; }
+
         IGenericRepository<TeamUpUser> Users { get; }
 
         void SaveChanges();

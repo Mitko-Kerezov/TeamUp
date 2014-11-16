@@ -64,6 +64,14 @@ namespace TeamUp.Data
                 return this.GetRepository<Project>();
             }
         }
+
+        public IGenericRepository<Invitation> Invitations
+        {
+            get
+            {
+                return this.GetRepository<Invitation>();
+            }
+        }
        
         public void SaveChanges()
         {

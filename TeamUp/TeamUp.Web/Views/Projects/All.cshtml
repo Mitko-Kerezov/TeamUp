@@ -7,9 +7,9 @@
     .Name("grid")
     .Columns(columns =>
         {
-            columns.Bound(u => u.Name).ClientTemplate("<a href=\"/Projects/Details/#=Id#\">#=Name#</a>");
-            columns.Bound(u => u.Description).ClientTemplate("#=shortenDescription(Description)#");
-            columns.Bound(u => u.HasEnded).ClientTemplate("#=showHasEnded(HasEnded)#");
+            columns.Bound(u => u.Name).ClientTemplate("<a href=\"/Projects/Details/#=Id#\">#:Name#</a>");
+            columns.Bound(u => u.Description).ClientTemplate("#:shortenDescription(Description)#");
+            columns.Bound(u => u.HasEnded).ClientTemplate("#:showHasEnded(HasEnded)#");
             columns.Bound(u => u.DateCreated);
         })
     .Filterable()

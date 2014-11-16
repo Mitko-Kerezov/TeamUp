@@ -33,8 +33,13 @@
                         <li><a href="/Invite">My invitations <span class="badge">@ViewBag.UnreadInvitationsCount</span></a></li>
                         if (this.User.IsInRole("Admin"))
                         {
-                            <li>@Html.ActionLink("Manage all skills", "Index", "ManageSkills", new { area = "Administration" }, new { })</li>
-                            <li>@Html.ActionLink("Manage all categories", "Index", "ManageCategories", new { area = "Administration" }, new { })</li>
+                            <li class="btn-group">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/Administration/ManageSkills">All skills</a></li>
+                                    <li><a href="/Administration/ManageCategories">All categories</a></li>
+                                </ul>
+                            </li>
                         }
                     }
                 </ul>

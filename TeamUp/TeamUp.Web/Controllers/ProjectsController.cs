@@ -61,6 +61,7 @@
 
                 project.Users.Add(this.CurrentUser);
                 this.CurrentUser.Projects.Add(project);
+                this.Data.Projects.Add(project);
 
                 this.Data.SaveChanges();
 

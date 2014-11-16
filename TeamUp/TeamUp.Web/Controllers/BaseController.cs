@@ -58,7 +58,7 @@
             }
         }
 
-        protected TeamUpUser CurrentUser
+        public virtual TeamUpUser CurrentUser
         {
             get
             {

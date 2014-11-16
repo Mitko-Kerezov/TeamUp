@@ -17,7 +17,7 @@
     public class HomeControllerTests
     {
         [TestMethod]
-        public void IndexReturnsNonNullView()
+        public void HomeIndexReturnsNonNullView()
         {
             // Arrange
             var data = Mock.Create<ITeamUpData>();

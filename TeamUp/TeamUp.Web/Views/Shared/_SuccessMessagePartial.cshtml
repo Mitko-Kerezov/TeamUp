@@ -1,0 +1,9 @@
+﻿@if (ViewBag.StatusMessage != null)
+{
+    <div class="alert alert-dismissable alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 class="text-success">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @ViewBag.StatusMessage
+        </h4>
+    </div>
+}

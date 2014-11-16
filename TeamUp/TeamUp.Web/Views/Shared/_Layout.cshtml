@@ -43,8 +43,8 @@
         </div>
     </div>
     <div class="container body-content">
-        <p class="text-success">@ViewBag.StatusMessage</p>
-        <p class="text-danger">@ViewBag.ErrorMessage</p>
+        @Html.Partial("_SuccessMessagePartial")
+        @Html.Partial("_ErrorMessagePartial")
         @RenderBody()
         <hr />
         <footer>

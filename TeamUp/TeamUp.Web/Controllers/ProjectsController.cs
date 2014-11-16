@@ -30,11 +30,17 @@
             ViewBag.StatusMessage =
                 message == ProjectMessage.CreateProjectSuccess ? "Project created successfully."
                 : message == ProjectMessage.Error ? "An error has occurred."
-                : "";
+                : null;
 
             return View();
         }
 
+        // GET: SeeMine
+        public ActionResult SeeMine()
+        {
+            var model = this.CurrentUser.Projects;
+            return View(model);
+        }
 
         // GET: CreateProject
         public ActionResult CreateProject()

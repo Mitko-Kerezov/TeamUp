@@ -48,7 +48,7 @@ namespace TeamUp.Web.Controllers
                 : message == ManageMessageId.ManageSkillsSuccess ? "Your skills have been modified."
                 : message == ManageMessageId.ChangeThemeSuccess ? "Your theme has been changed."
                 : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
+                : null;
 
             return View();
         }

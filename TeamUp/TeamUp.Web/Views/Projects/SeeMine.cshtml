@@ -1,0 +1,7 @@
+﻿@using TeamUp.Models
+@model ICollection<Project>
+@{
+    ViewBag.Title = "My Projects";
+}
+<h2>Projects You're <em>involved</em> in</h2>
+@Html.Partial("_MyProjectsPartial", Model)

@@ -42,15 +42,5 @@
 </div>
 <div class="row text-center">
     <h4>Projects I'm <em>involved</em> in</h4>
-    @if (Model.Projects.Count == 0)
-    {
-        <p class="text-muted">None</p>
-    }
-    else
-    {
-        foreach (var project in Model.Projects)
-        {
-            @Html.ActionLink(project.Name, "Details", "Projects", new { id = project.Id }, new { @class = "btn btn-primary" })
-        }
-    }
+    @Html.Partial("_MyProjectsPartial", Model.Projects)
 </div>

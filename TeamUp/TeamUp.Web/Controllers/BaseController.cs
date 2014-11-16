@@ -9,6 +9,7 @@
     using System;
     using System.Web.Routing;
 
+    [ValidateInput(false)]
     public abstract class BaseController : Controller
     {
         private ITeamUpData data;

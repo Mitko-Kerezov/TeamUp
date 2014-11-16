@@ -244,8 +244,8 @@
     <Content Include="Content\BootstrapThemes\Cyborg.css" />
     <Content Include="Content\BootstrapThemes\Default.css" />
     <Content Include="Content\BootstrapThemes\Paper.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -269,6 +269,9 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\AdministrationViewModel.cshtml" />
     <Content Include="Areas\Administration\Views\ManageCategories\Index.cshtml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Administration\Scripts\gridErrorHandler.js" />
     <Content Include="Scripts\gridTemplateGenerator.js" />
@@ -335,14 +338,15 @@
     <Content Include="Views\Shared\EditorTemplates\MultiLineText.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Invite\Index.cshtml" />
+    <Content Include="Views\Shared\_MyProjectsPartial.cshtml" />
+    <Content Include="Views\Projects\SeeMine.cshtml" />
+    <Content Include="Views\Shared\_SuccessMessagePartial.cshtml" />
+    <Content Include="Views\Shared\_ErrorMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
